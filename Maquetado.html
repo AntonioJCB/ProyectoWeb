@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BanConsumir</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <!--<p id="funciones">Cuenta<br><br>Saldo<br><br>Transferencia<br><br>Ahorros<br><br>Atencion a Cliente</p>-->
+    <div id="funciones">
+        <strong>
+        <p id="cuenta">Cuenta</p>
+        <p id="saldo">Saldo</p>
+        <p id="transferencia">Transferencia</p>
+        <p id="ahorro">Ahorros</p>
+        <p id="atencion">Atencion a <br> Cliente</p>
+        </strong>
+    </div>
+    <p id="cerrar"><strong>Cerrar sesion</strong></p>
+    <table>
+        <tr>
+            <td>Marco<br>BBVA-**** **** **** **52</td>    
+        </tr>
+        <tr>
+            <td>Antonio<br>Santander-**** **** **** **22</td>    
+        </tr>
+        <tr>
+            <td>Camou<br>Nu Bank-**** **** **** **16</td>    
+        </tr>
+        <tr>
+            <td>Transferencia<br>Scotia Bank-**** **** **** **85</td>    
+        </tr>
+    </table>
+    <form action="/formulario" method="POST">
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <input type="text" name="tarjeta" id="tarjeta" placeholder="Tarjeta">
+    </form>
+    <button id="boton" type="button" onclick="alert('Cuenta Banco **** **** **** ****')">Agregar</button>
+</body>
+</html>
