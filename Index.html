@@ -5,18 +5,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav id="menu" class="">
+    <nav id="menu">
         <button id="menu-toggle">☰</button>
         <div id="menu-content">
             <div id="funciones">
                 <strong>
-                    <p id="cuenta">Cuenta</p> <!-- Redirige a index.html -->
+                    <p id="cuenta">Cuenta</p> 
                     <p id="saldo">Saldo</p>
-                    <p id="transferencia">Transferencia</p> <!-- Redirige a adicionar.html -->
+                    <p id="transferencia">Transferencia</p> 
                     <p id="ahorro">Ahorros</p>
                     <p id="atencion">Atencion a <br> Cliente</p>
                 </strong>
             </div>
+            <p id="cerrar">Cerrar sesión</p>
         </div>
     </nav>
     <main>
@@ -39,16 +40,21 @@
     <script>
         document.getElementById('menu-toggle').addEventListener('click', function() {
     document.getElementById('menu').classList.toggle('show');
-    });
-
+});
 
     document.getElementById('cuenta').addEventListener('click', function() {
-        window.location.href = "index.html"; // Redirige a Lista de elementos
+        window.location.href = "index.html"; 
     });
 
     document.getElementById('transferencia').addEventListener('click', function() {
-        window.location.href = "adicionar.html"; // Redirige a Adicionar un nuevo elemento
+        window.location.href = "adicionar.html"; 
     });
+
+    document.getElementById('cerrar').addEventListener('click', function() {
+        alert("Sesión cerrada");
+        window.location.href = "login.html"; 
+    });
+
     </script>
 </body>
 </html>
