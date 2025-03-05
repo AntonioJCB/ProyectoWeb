@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BanConsumir</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="menu" class="">
+        <button id="menu-toggle">☰</button>
+        <div id="menu-content">
+            <div id="funciones">
+                <strong>
+                    <p id="cuenta">Cuenta</p> <!-- Redirige a index.html -->
+                    <p id="saldo">Saldo</p>
+                    <p id="transferencia">Transferencia</p> <!-- Redirige a adicionar.html -->
+                    <p id="ahorro">Ahorros</p>
+                    <p id="atencion">Atencion a <br> Cliente</p>
+                </strong>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <p id="cerrar"><strong>Cerrar sesión</strong></p>
+        <table>
+            <tr>
+                <td>Marco<br>BBVA-**** **** **** **52</td>    
+            </tr>
+            <tr>
+                <td>Antonio<br>Santander-**** **** **** **22</td>    
+            </tr>
+            <tr>
+                <td>Camou<br>Nu Bank-**** **** **** **16</td>    
+            </tr>
+            <tr>
+                <td>Transferencia<br>Scotia Bank-**** **** **** **85</td>    
+            </tr>
+        </table>
+    </main>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('menu').classList.toggle('show');
+    });
+
+
+    document.getElementById('cuenta').addEventListener('click', function() {
+        window.location.href = "index.html"; // Redirige a Lista de elementos
+    });
+
+    document.getElementById('transferencia').addEventListener('click', function() {
+        window.location.href = "adicionar.html"; // Redirige a Adicionar un nuevo elemento
+    });
+    </script>
+</body>
+</html>

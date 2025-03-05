@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar un nuevo elemento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="menu" class="">
+        <button id="menu-toggle">☰</button>
+        <div id="menu-content">
+            <div id="funciones">
+                <strong>
+                    <p id="cuenta">Cuenta</p> <!-- Redirige a index.html -->
+                    <p id="saldo">Saldo</p>
+                    <p id="transferencia">Transferencia</p> <!-- Redirige a adicionar.html -->
+                    <p id="ahorro">Ahorros</p>
+                    <p id="atencion">Atencion a <br> Cliente</p>
+                </strong>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <form action="/formulario" method="POST">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            <input type="text" name="tarjeta" id="tarjeta" placeholder="Tarjeta">
+            <button id="boton" type="submit">Agregar</button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('menu').classList.toggle('show');
+    });
+
+
+    document.getElementById('cuenta').addEventListener('click', function() {
+        window.location.href = "index.html"; 
+    });
+
+    document.getElementById('transferencia').addEventListener('click', function() {
+        window.location.href = "adicionar.html"; 
+    });
+    </script>
+</body>
+</html>
