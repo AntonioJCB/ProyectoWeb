@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BanConsumir - Inicio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BanConsumir - Transferencia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="adicionar.css">
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -25,20 +26,12 @@
     </nav>
 
     <main>
-        <table>
-            <tr>
-                <td>Marco<br>BBVA-**** **** **** **52</td>    
-            </tr>
-            <tr>
-                <td>Antonio<br>Santander-**** **** **** **22</td>    
-            </tr>
-            <tr>
-                <td>Camou<br>Nu Bank-**** **** **** **16</td>    
-            </tr>
-            <tr>
-                <td>Transferencia<br>Scotia Bank-**** **** **** **85</td>    
-            </tr>
-        </table>
+        <form action="/formulario" method="POST">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            <input type="text" name="tarjeta" id="tarjeta" placeholder="Tarjeta" required>
+            <input type="number" name="monto" id="monto" placeholder="Monto a transferir" required>
+            <button id="boton" type="submit">Transferir</button>
+        </form>
     </main>
 </body>
 </html>

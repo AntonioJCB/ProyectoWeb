@@ -1,92 +1,215 @@
-body{
-    background-color: #ffffffe0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-td {
-    border: 1px solid black;
+
+body {
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Hide menu toggle checkbox */
+.menu-toggle {
+    display: none;
+}
+
+/* Menu Styles */
+#menu {
+    background-color: #fcfcff;
+    width: 220px;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.menu-toggle-label {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 30px;
     padding: 10px;
-    border-collapse: collapse;
-    border-radius: 10px;
-    font-size: 20px;
-}
-table {
-    width: 90%;
-    background-color: #fff4fc;  
-    margin-left: 150px;
-    margin-top: 100px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
-}
-
-#boton{
+    cursor: pointer;
     position: absolute;
-    top: 450px;
-    left: 1250px;
-}
-#nombre{
-    position: absolute;
-    top: 450px;
-    left: 900px;
-}
-#tarjeta{
-    position: absolute;
-    top: 450px;
-    left: 1070px;
-}
-
-#funciones{
-    text-align: center;
-    position: absolute;
-    top: 80px;
-    left: 5px;
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-}
-
-#cuenta{
-    background-color: #EADDFF;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 30px;
-}
-
-#saldo{
-    background-color: #C5ABEF;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 30px;
-}
-
-#transferencia {
-    background-color: #B897ED;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 20px;
-}
-
-#ahorro {
-    background-color: #9661EA;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 30px;
-}
-
-#atencion {
-    background-color: #924FFF;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 25px;
-}
-
-#cerrar{
-    position: absolute;
-    top: 800px;
+    top: 10px;
     left: 10px;
+    z-index: 1100;
+}
+
+#menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+}
+
+#funciones {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#funciones a {
+    width: 90%;
+    padding: 12px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+#cuenta { background-color: #EADDFF; }
+#saldo { background-color: #C5ABEF; }
+#transferencia { background-color: #B897ED; }
+#ahorro { background-color: #9661EA; }
+#atencion { background-color: #924FFF; }
+
+#funciones a:hover {
+    background-color: #6A31E5;
+    color: white;
+    transform: scale(1.05);
+}
+
+#cerrar {
     background-color: #D7D7D7;
     color: black;
     border-radius: 10px;
-    padding: 10px;
-    font-size: 20px;
-    font-family: Arial, sans-serif;
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    width: 90%;
+    margin-top: auto;
+    display: block;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#cerrar:hover {
+    background-color: #ff4d4d;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Main Content Styles */
+main {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    background-color: #ffffff;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #menu {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    #funciones a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu {
+        transform: translateX(-100%);
+        width: 250px;
+    }
+
+    .menu-toggle-label {
+        display: block;
+    }
+
+    .menu-toggle:checked ~ #menu {
+        transform: translateX(0);
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #funciones a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #menu {
+        width: 100%;
+        height: auto;
+        position: static;
+        transform: none;
+    }
+
+    #menu-content {
+        flex-direction: column;
+    }
+
+    #funciones {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    #funciones a {
+        width: auto;
+        margin: 5px;
+        padding: 8px;
+        font-size: 12px;
+        flex-grow: 1;
+    }
+
+    #cerrar {
+        position: static;
+        margin: 10px;
+    }
+
+    td {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
