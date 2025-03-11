@@ -1,23 +1,35 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* Start with the Bootstrap version basics */
 body {
     background-color: #f4f4f9;
-    font-family: 'Arial', sans-serif;
     display: flex;
-    min-height: 100vh;
     margin: 0;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Hide menu toggle checkbox */
+td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+table {
+    width: 70%;
+    background-color: #ffffff;
+    margin-left: 250px;
+    margin-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+}
+
+/* Menu Styles - taking the cleaner parts from both */
 .menu-toggle {
     display: none;
 }
 
-/* Menu Styles */
 #menu {
     background-color: #fcfcff;
     width: 220px;
@@ -29,6 +41,8 @@ body {
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-toggle-label {
@@ -113,24 +127,46 @@ main {
     padding: 20px;
 }
 
-table {
-    width: 100%;
-    background-color: #ffffff;
+/* Form styles from bootstrap version */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 250px;
     margin-top: 50px;
+    background-color: #ffffff;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-collapse: collapse;
+    width: 10%;
 }
 
-td {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 10px;
+input {
+    width: 10%;
+    padding: 12px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#boton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-/* Responsive Styles */
+#boton:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Styles - take the better organized ones from main */
 @media (max-width: 1024px) {
     #menu {
         width: 200px;
@@ -166,8 +202,9 @@ td {
         padding: 10px;
     }
 
-    table {
-        width: 100%;
+    table, form {
+        width: 90%;
+        margin-left: 10px;
         margin-top: 20px;
     }
 
@@ -211,5 +248,14 @@ td {
     td {
         font-size: 14px;
         padding: 8px;
+    }
+    
+    form {
+        width: 90%;
+        margin-left: 10px;
+    }
+    
+    input {
+        width: 100%;
     }
 }
