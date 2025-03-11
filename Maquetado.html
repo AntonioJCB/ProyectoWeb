@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BanConsumir</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanConsumir - Inicio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
-    <!--<p id="funciones">Cuenta<br><br>Saldo<br><br>Transferencia<br><br>Ahorros<br><br>Atencion a Cliente</p>-->
-    <div id="funciones">
-        <strong>
-        <p id="cuenta">Cuenta</p>
-        <p id="saldo">Saldo</p>
-        <p id="transferencia">Transferencia</p>
-        <p id="ahorro">Ahorros</p>
-        <p id="atencion">Atencion a <br> Cliente</p>
-        </strong>
-    </div>
-    <p id="cerrar"><strong>Cerrar sesion</strong></p>
-    <table>
-        <tr>
-            <td>Marco<br>BBVA-**** **** **** **52</td>    
-        </tr>
-        <tr>
-            <td>Antonio<br>Santander-**** **** **** **22</td>    
-        </tr>
-        <tr>
-            <td>Camou<br>Nu Bank-**** **** **** **16</td>    
-        </tr>
-        <tr>
-            <td>Transferencia<br>Scotia Bank-**** **** **** **85</td>    
-        </tr>
-    </table>
-    <form action="/formulario" method="POST">
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-        <input type="text" name="tarjeta" id="tarjeta" placeholder="Tarjeta">
-    </form>
-    <button id="boton" type="button" onclick="alert('Cuenta Banco **** **** **** ****')">Agregar</button>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <nav id="menu">
+        <label for="menu-toggle" class="menu-toggle-label">☰</label>
+        <div id="menu-content">
+            <div id="funciones">
+                <strong>
+                    <a href="index.html" id="cuenta">Cuenta</a> 
+                    <a href="#" id="saldo">Saldo</a>
+                    <a href="adicionar.html" id="transferencia">Transferencia</a> 
+                    <a href="#" id="ahorro">Ahorros</a>
+                    <a href="#" id="atencion">Atencion a <br> Cliente</a>
+                </strong>
+            </div>
+            <a href="login.html" id="cerrar">Cerrar sesión</a>
+        </div>
+    </nav>
+
+    <main>
+        <table>
+            <tr>
+                <td>Marco<br>BBVA-**** **** **** **52</td>    
+            </tr>
+            <tr>
+                <td>Antonio<br>Santander-**** **** **** **22</td>    
+            </tr>
+            <tr>
+                <td>Camou<br>Nu Bank-**** **** **** **16</td>    
+            </tr>
+            <tr>
+                <td>Transferencia<br>Scotia Bank-**** **** **** **85</td>    
+            </tr>
+        </table>
+    </main>
 </body>
 </html>
