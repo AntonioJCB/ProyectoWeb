@@ -46,14 +46,14 @@ table {
     background-color: #EADDFF;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 #saldo{
     background-color: #C5ABEF;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 #transferencia {
@@ -69,7 +69,7 @@ table {
     background-color: #9661EA;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 #atencion {
