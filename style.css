@@ -62,29 +62,51 @@ body {
 
 #funciones a {
     width: 90%;
-    padding: 12px;
-    border-radius: 25px;
+    padding: 8px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.1s, transform 0.1s;
     text-decoration: none;
     color: black;
     display: block;
 }
 
-#cuenta { background-color: #EADDFF; }
-#saldo { background-color: #C5ABEF; }
-#transferencia { background-color: #B897ED; }
-#ahorro { background-color: #9661EA; }
-#atencion { background-color: #924FFF; }
-
 #funciones a:hover {
-    background-color: #6A31E5;
     color: white;
     transform: scale(1.05);
 }
+
+#funciones a.btn-primary:hover {
+    background-color: #D4BBFF !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+#funciones a.btn-secondary:hover {
+    background-color: #B69BD3 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+#funciones a.btn-success:hover {
+    background-color: #A683D6 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+#funciones a.btn-warning:hover {
+    background-color: #8451D2 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+#funciones a.btn-danger:hover {
+    background-color: #7F38DE !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
 
 #cerrar {
     background-color: #D7D7D7;
@@ -97,13 +119,11 @@ body {
     width: 90%;
     margin-top: auto;
     display: block;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.1s, transform 0.1s;
 }
 
-#cerrar:hover {
-    background-color: #ff4d4d;
-    color: white;
-    transform: scale(1.05);
+.btn {
+    border: none !important;
 }
 
 /* Main Content Styles */
@@ -128,88 +148,4 @@ td {
     border-radius: 10px;
     font-size: 18px;
     text-align: center;
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-    #menu {
-        width: 200px;
-    }
-
-    main {
-        margin-left: 200px;
-        width: calc(100% - 200px);
-    }
-
-    #funciones a {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 768px) {
-    #menu {
-        transform: translateX(-100%);
-        width: 250px;
-    }
-
-    .menu-toggle-label {
-        display: block;
-    }
-
-    .menu-toggle:checked ~ #menu {
-        transform: translateX(0);
-    }
-
-    main {
-        margin-left: 0;
-        width: 100%;
-        padding: 10px;
-    }
-
-    table {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    #funciones a {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    #menu {
-        width: 100%;
-        height: auto;
-        position: static;
-        transform: none;
-    }
-
-    #menu-content {
-        flex-direction: column;
-    }
-
-    #funciones {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    #funciones a {
-        width: auto;
-        margin: 5px;
-        padding: 8px;
-        font-size: 12px;
-        flex-grow: 1;
-    }
-
-    #cerrar {
-        position: static;
-        margin: 10px;
-    }
-
-    td {
-        font-size: 14px;
-        padding: 8px;
-    }
 }
