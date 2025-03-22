@@ -31,16 +31,22 @@
     <main class="container-fluid">
         <div class="table-responsive mt-5">
             <table class="table table-bordered bg-white shadow rounded">
+<<<<<<< HEAD
                 <tbody>
                     <tr><td>Marco<br>BBVA-**** **** **** **52</td></tr>
                     <tr><td>Antonio<br>Santander-**** **** **** **22</td></tr>
                     <tr><td>Camou<br>Nu Bank-**** **** **** **16</td></tr>
                     <tr><td>Transferencia<br>Scotia Bank-**** **** **** **85</td></tr>
+=======
+                <tbody id="table-body">
+                    <tr><td>Cargando datos...</td></tr>
+>>>>>>> c0c0c85e4a0549f01418ec772a0d54aab7368dc5
                 </tbody>
             </table>
         </div>
     </main>
 
+<<<<<<< HEAD
     <!-- Script para abrir/cerrar el menú solo en móviles -->
     <script>
         document.querySelector('.menu-toggle-label').addEventListener('click', function() {
@@ -52,6 +58,55 @@
             }
         });
 
+=======
+    <!-- Script para cargar datos y manejar el menú -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const API_URL = "https://YOUR_MOCKAPI_URL/items";
+            const tableBody = document.getElementById("table-body");
+
+            fetch(API_URL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                tableBody.innerHTML = ""; // Limpiar contenido
+                if (data.length === 0) {
+                    tableBody.innerHTML = "<tr><td>No hay transferencias registradas.</td></tr>";
+                    return;
+                }
+                data.forEach(item => {
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${item.nombre} <br> ${item.banco}-**** **** **** ${item.tarjeta.slice(-2)}</td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error("Error cargando datos:", error);
+                tableBody.innerHTML = "<tr><td>Error al cargar los datos. Intente más tarde.</td></tr>";
+            });
+
+            // Manejo del menú en móviles
+            const menuToggleLabel = document.querySelector('.menu-toggle-label');
+            const menu = document.getElementById('menu');
+
+            menuToggleLabel.addEventListener('click', function() {
+                menu.classList.toggle('d-none');
+            });
+
+            // Asegurar que el menú se muestre en pantallas grandes
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    menu.classList.remove('d-none');
+                }
+            });
+        });
+>>>>>>> c0c0c85e4a0549f01418ec772a0d54aab7368dc5
     </script>
 
 </body>
