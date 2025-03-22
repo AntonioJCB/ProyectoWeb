@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Botón de menú hamburguesa (Solo en móviles) -->
+
+    <!-- Botón menú hamburguesa -->
     <label for="menu-toggle" class="menu-toggle-label d-block d-md-none fs-3 position-absolute p-3">☰</label>
 
     <!-- Menú lateral -->
@@ -25,7 +26,7 @@
         </div>
     </nav>
 
-    <!-- Formulario de transferencia -->
+    <!-- Formulario transferencia -->
     <main class="d-flex justify-content-center align-items-center min-vh-100">
         <div class="card shadow p-4" style="width: 350px; background-color: #ffffff; border-radius: 10px;">
             <h2 class="text-center mb-4" style="color: #6A31E5;">Realizar Transferencia</h2>
@@ -34,33 +35,112 @@
                     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" name="tarjeta" id="tarjeta" class="form-control" placeholder="Tarjeta" required>
+                    <input type="text" name="tarjeta" id="tarjeta" class="form-control" placeholder="Tarjeta" required pattern="\d{16}" title="Ingrese un número de tarjeta válido de 16 dígitos">
                 </div>
                 <div class="mb-3">
-                    <input type="number" name="monto" id="monto" class="form-control" placeholder="Monto a transferir" required>
+                    <input type="number" name="monto" id="monto" class="form-control" placeholder="Monto a transferir" required min="1" step="0.01">
                 </div>
                 <button id="boton" type="button" class="btn w-100 text-white" style="background-color: #4CAF50;">Transferir</button>
             </form>
+            
+            <!-- Modal de confirmación -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Confirmar Transferencia</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="confirmationDetails">
+                            <!-- Detalles de la transferencia -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="confirmTransfer">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Manejo del botón de transferencia
-            document.getElementById("boton").addEventListener("click", function () {
-                const nombre = document.getElementById("nombre").value.trim();
-                const tarjeta = document.getElementById("tarjeta").value.trim();
-                const monto = document.getElementById("monto").value.trim();
+            const transferForm = document.getElementById("transfer-form");
+            const nombreInput = document.getElementById("nombre");
+            const tarjetaInput = document.getElementById("tarjeta");
+            const montoInput = document.getElementById("monto");
+            const transferButton = document.getElementById("boton");
+            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            const confirmationDetails = document.getElementById('confirmationDetails');
+            const confirmTransferBtn = document.getElementById('confirmTransfer');
+            
+            // Validación de formato de tarjeta
+            tarjetaInput.addEventListener('input', function() {
+                // Remover cualquier caracter que no sea número
+                this.value = this.value.replace(/[^\d]/g, '');
+                
+                // Limitar a 16 dígitos
+                if (this.value.length > 16) {
+                    this.value = this.value.slice(0, 16);
+                }
+            });
+            
+            // Validación de monto
+            montoInput.addEventListener('input', function() {
+                if (parseFloat(this.value) <= 0) {
+                    this.setCustomValidity('El monto debe ser mayor que cero');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
 
-                if (!nombre || !tarjeta || !monto) {
-                    alert("Todos los campos son obligatorios.");
+            transferButton.addEventListener("click", function () {
+                // Validar formulario
+                if (!transferForm.checkValidity()) {
+                    transferForm.reportValidity();
                     return;
                 }
+                
+                const nombre = nombreInput.value.trim();
+                const tarjeta = tarjetaInput.value.trim();
+                const monto = montoInput.value.trim();
+                
+                // Mostrar detalles en el modal de confirmación
+                confirmationDetails.innerHTML = `
+                    <p><strong>Destinatario:</strong> ${nombre}</p>
+                    <p><strong>Tarjeta:</strong> **** **** **** ${tarjeta.slice(-4)}</p>
+                    <p><strong>Monto:</strong> $${parseFloat(monto).toFixed(2)}</p>
+                `;
+                
+                // Mostrar modal de confirmación
+                confirmationModal.show();
+            });
+            
+            // Manejar el clic en el botón de confirmación
+            confirmTransferBtn.addEventListener('click', function() {
+                const nombre = nombreInput.value.trim();
+                const tarjeta = tarjetaInput.value.trim();
+                const monto = montoInput.value.trim();
+                
+                // Crear objeto de transferencia
+                const nuevoElemento = { 
+                    nombre, 
+                    banco: "Banco X", 
+                    tarjeta, 
+                    monto: parseFloat(monto).toFixed(2) 
+                };
+                
+                // Ocultar modal
+                confirmationModal.hide();
+                
+                // Mostrar indicador de carga
+                transferButton.disabled = true;
+                transferButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...';
 
-                const nuevoElemento = { nombre, banco: "Banco X", tarjeta, monto };
-
-                fetch("https://mockapi.io/clone/67ddea6f471aaaa74282d9a4", {
+                // Enviar transferencia a la API
+                fetch("https://67de2cef471aaaa74283782d.mockapi.io/Transferencia", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(nuevoElemento)
@@ -72,20 +152,49 @@
                     return response.json();
                 })
                 .then(() => {
-                    alert("Transferencia registrada exitosamente.");
-                    window.location.href = "index.html";
+                    // Crear un elemento de alerta de éxito
+                    const alertEl = document.createElement('div');
+                    alertEl.className = 'alert alert-success mt-3';
+                    alertEl.innerHTML = 'Transferencia registrada exitosamente. Redirigiendo...';
+                    transferForm.parentNode.appendChild(alertEl);
+                    
+                    // Redireccionar después de mostrar el mensaje
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
                 })
                 .catch(error => {
                     console.error("Error al agregar la transferencia:", error);
-                    alert("Hubo un problema al realizar la transferencia.");
+                    
+                    // Crear un elemento de alerta de error
+                    const alertEl = document.createElement('div');
+                    alertEl.className = 'alert alert-danger mt-3';
+                    alertEl.innerHTML = 'Hubo un problema al realizar la transferencia. Por favor, intente nuevamente.';
+                    transferForm.parentNode.appendChild(alertEl);
+                    
+                    // Restaurar botón
+                    transferButton.disabled = false;
+                    transferButton.innerHTML = 'Transferir';
                 });
             });
 
-            // Manejo del menú hamburguesa
+            // Menú hamburguesa
             document.querySelector('.menu-toggle-label').addEventListener('click', function() {
                 const menu = document.getElementById('menu');
-                if (window.innerWidth < 1024) {
+                if (window.innerWidth < 768) {
                     menu.classList.toggle('d-none');
+                }
+            });
+            
+            // Asegurar que el menú se muestre correctamente en cambios de tamaño
+            window.addEventListener('resize', function() {
+                const menu = document.getElementById('menu');
+                if (window.innerWidth >= 768) {
+                    menu.classList.remove('d-none');
+                    menu.classList.add('d-flex');
+                } else {
+                    menu.classList.add('d-none');
+                    menu.classList.remove('d-flex');
                 }
             });
         });
